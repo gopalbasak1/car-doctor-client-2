@@ -1,9 +1,10 @@
 import { MdArrowRightAlt } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 
 const ServiceCard = ({service}) => {
 
-   const {title, img, price} = service;
+   const {_id, title, img, price} = service;
 
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -15,7 +16,7 @@ const ServiceCard = ({service}) => {
     
     <div className="flex justify-between items-center text-xl text-[#FF3811]">
     <p className="">${price}</p>
-      <span className=""><MdArrowRightAlt /></span>
+      <Link to={`/checkout/${_id}`}><span className=""><MdArrowRightAlt /></span></Link>
     </div>
   </div>
 </div>
