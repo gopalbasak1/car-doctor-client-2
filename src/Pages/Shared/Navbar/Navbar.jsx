@@ -3,8 +3,18 @@ import logo from "../../../assets/logo.svg"
 import ThemeToggle from "./ThemeToggle";
 import { CiSearch } from "react-icons/ci";
 import { HiOutlineShoppingBag } from "react-icons/hi";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Navbar = () => {
+
+    const {user, logOut} = useContext(AuthContext);
+
+    const handleLogOut = () =>{
+        logOut()
+        .then(() => {})
+        .catch(error => console.error(error))
+    }
 
     const navLinks = <>
 
@@ -13,7 +23,18 @@ const Navbar = () => {
     <li><NavLink to='/services'>Services</NavLink></li>
     <li><NavLink to='/blog'>Blog</NavLink></li>
     <li><NavLink to='/contact'>Contact</NavLink></li>
+   {
+    user?.email ? 
+    <>
+
+    <li><NavLink to='/bookings'>My Bookings</NavLink></li>
+
+    <li><button onClick={handleLogOut}>Log Out</button></li>
+    </>  
+    :  
     <li><NavLink to='/login'>login</NavLink></li>
+    
+   }
     
     </>
 
